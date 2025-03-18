@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from StreakyReads.models.book import Book
-from StreakyReads import db 
+from app.models.book import Book
+from app import db
 
 main = Blueprint('main', __name__)
 
@@ -17,7 +17,7 @@ def get_books():
     books = Book.query.all()
     return jsonify([{'id': book.id, 'title': book.title, 'author': book.author, 'total_pages': book.total_pages, 'pages_read': book.pages_read} for book in books])
 
-@main.route('/books/<int:book_id>/progress', methods=[PATCH])
+@main.route('/books/<int:book_id>/progress', methods=['PATCH'])
 def update_progress(book_id):
     data = request.json
     book = Book.query.get_or_404(book_id)
