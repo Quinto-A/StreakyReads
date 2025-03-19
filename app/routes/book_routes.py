@@ -4,6 +4,10 @@ from app import db
 
 main = Blueprint('main', __name__)
 
+@main.route('/')
+def home():
+    return jsonify({'message': 'Welcome to SteakyReads API!'})
+
 @main.route('/books', methods=['POST'])
 def add_book():
     data = request.json
