@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from app.models.book import Book
 from app import db
 
-main = Blueprint('main', __name__)
+main = Blueprint('main', __name__, url_prefix='/api')
 
 @main.route('/')
 def home():
